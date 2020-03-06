@@ -1,0 +1,211 @@
+.dd {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 600px;
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px
+}
+
+.dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.dd-list .dd-list {
+    padding-left: 30px
+}
+
+.dd-empty,
+.dd-item,
+.dd-placeholder {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    font-size: 13px;
+    line-height: 20px
+}
+.dd-handle {
+    display: block;
+    height: 40px;
+    margin: 0 0 9px;
+    padding: 10px 15px;
+    color: #333;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    border-radius: 3px;
+    box-sizing: border-box
+}
+
+.dd-handle:hover {
+    color: #2ea8e5;
+    background: #fff;
+    cursor: move;
+}
+.dd-item.active > .dd-handle {
+	margin-bottom: 0;
+	background-color: #f0f0f0;
+	border-color: #bbb;
+	border-bottom-width: 0;
+	border-radius: 3px 3px 0 0; 
+}
+.dd-item > button {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 30px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    background: 0 0;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 700
+}
+
+.dd-item>button:before {
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    text-indent: 0
+}
+
+.dd-item>button.dd-expand:before {
+    content: '+'
+}
+
+.dd-item>button.dd-collapse:before {
+    content: '-'
+}
+
+.dd-expand {
+    display: none
+}
+
+.dd-collapsed .dd-collapse,
+.dd-collapsed .dd-list {
+    display: none
+}
+
+.dd-collapsed .dd-expand {
+    display: block
+}
+
+.dd-empty,
+.dd-placeholder {
+    margin: 0 0 9px;
+    padding: 0;
+    min-height: 30px;
+    background: #f2fbff;
+    border: 1px dashed #b6bcbf;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.dd-empty {
+    border: 1px dashed #bbb;
+    min-height: 100px;
+    background-color: #e5e5e5;
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px
+}
+
+.dd-dragel {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999
+}
+
+.dd-dragel>.dd-item .dd-handle {
+    margin-top: 0
+}
+
+.dd-dragel .dd-handle {
+	cursor: pointer;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1)
+}
+
+.dd-nochildren .dd-placeholder {
+    display: none
+}
+.dd-item .item-error {
+	position: absolute;
+	top: 0;
+	right: 40px;
+	height: 40px;
+	line-height: 40px;
+}
+.dd-item .item-edit {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.dd-item .item-edit:before {
+	content: "\e62b";
+	font-family: iconfont;
+	color: #BBBBBB;
+	font-size: 20px;
+	cursor: pointer;
+}
+.dd-item.active .item-edit:before {
+	content: "\e630";
+}
+.dd-item .item-settings {
+	display: none;
+	margin-bottom: 9px;
+	padding: 9px;
+    border: 1px solid #ccc;
+    border-top-width: 0;
+    background: #fff;
+    border-radius: 0 0 3px 3px;
+}
+.dd-item.active > .item-settings {
+	display: block;
+	border-color: #bbb;
+}
+.dd-item .item-settings .form-group {
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+	border: none;
+}
+.dd-item .image-wrap label {
+	display: block;
+}
+.dd-item .image-wrap .img-thumbnail {
+}
+.dd-item .item-settings .action {
+	text-align: right;
+}
+
+.moving-wrap {
+	cursor: move;
+}
+
+
+
+
+
+
+
+

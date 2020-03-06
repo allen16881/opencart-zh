@@ -1,0 +1,23 @@
+<ul class="nav-box">
+  {% if not logged %}
+  <li{% if route == 'account/login' %} class="active"{% endif %}><a href="{{ login }}">{{ text_login }}</a></li>
+  <li{% if route == 'account/register' %} class="active"{% endif %}><a href="{{ register }}">{{ text_register }}</a></li>
+  <li{% if route == 'account/forgotten' %} class="active"{% endif %}><a href="{{ forgotten }}">{{ text_forgotten }}</a></li>
+  {% else %}
+  <li{% if route == 'account/account' %} class="active"{% endif %}><a href="{{ account }}"><i class="icon-user"></i>{{ text_account }}</a></li>
+  <li{% if route == 'account/order' %} class="active"{% endif %}><a href="{{ order }}"><i class="icon-cart"></i>{{ text_order }}</a></li>
+  <li{% if route == 'account/download' %} class="active"{% endif %}><a href="{{ download }}"><i class="icon-download"></i>{{ text_download }}</a></li>
+  <li{% if route == 'account/wishlist' %} class="active"{% endif %}><a href="{{ wishlist }}"><i class="icon-heart"></i>{{ text_wishlist }}</a></li>
+  <li{% if route == 'account/recurring' %} class="active"{% endif %}><a href="{{ recurring }}"><i class="icon-checklist"></i>{{ text_recurring }}</a></li>
+  <li{% if route == 'account/reward' %} class="active"{% endif %}><a href="{{ reward }}"><i class="icon-inbox"></i>{{ text_reward }}</a></li>
+  <li{% if route == 'account/return' %} class="active"{% endif %}><a href="{{ return }}"><i class="icon-return"></i>{{ text_return }}</a></li>
+  <li{% if route == 'account/transaction' %} class="active"{% endif %}><a href="{{ transaction }}"><i class="icon-wallet"></i>{{ text_transaction }}</a></li>
+  <li{% if route == 'account/edit' or route == 'account/password' or route == 'account/newsletter' or route == 'account/address' %} class="active"{% endif %}><a href="{{ edit }}"><i class="icon-gear"></i>{{ text_account_setting }}</a></li>
+  {# <li{% if route == 'account/password' %} class="active"{% endif %}><a href="{{ password }}"><i class="icon-lock"></i>{{ text_password }}</a></li> #}
+  {% endif %}
+  {# <li{% if route == 'account/address' %} class="active"{% endif %}><a href="{{ address }}"><i class="icon-location"></i>{{ text_address }}</a></li> #}
+  {# <li{% if route == 'account/newsletter' %} class="active"{% endif %}><a href="{{ newsletter }}"><i class="icon-broadcast"></i>{{ text_newsletter }}</a></li> #}
+  {% if logged %}
+  <li><a href="{{ logout }}"><i class="icon-exit"></i>{{ text_logout }}</a></li>
+  {% endif %}
+</ul>

@@ -1,0 +1,22 @@
+{{ header }}
+<div class="container">
+<h1>{{ heading_title }}<small>{{ text_step_4 }}</small></h1>
+{% if error_warning %}
+<div class="alert alert-danger alert-dismissible"><i class="icon-warning"></i> {{ error_warning }}
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+{% endif %}
+{% if success %}
+<div class="alert alert-success alert-dismissible">{{ success }}</div>
+{% endif %}
+<div class="visit">
+  <div class="row">
+    <div class="col-sm-5 col-sm-offset-1 text-center">
+      <a href="../" class="btn btn-success btn-circle"><i class="icon-store"></i>{{ text_catalog }}</a>
+    </div>
+    <div class="col-sm-5 text-center">
+      <a href="../admin/" class="btn btn-info btn-circle"><i class="icon-gear"></i>{{ text_admin }}</a>
+    </div>
+  </div>
+</div>
+{{ footer }}

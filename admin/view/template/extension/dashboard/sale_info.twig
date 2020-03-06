@@ -1,0 +1,9 @@
+<div class="tile tile-warning">
+  <a href="{{ sale }}" class="tile-body">
+    <div class="info">
+      <h2>{{ total }}</h2>
+      <small>{{ heading_title }}</small>
+    </div>
+    <div class="stats">{% if percentage > 0 %}<i class="icon-caret-up"></i>{{ percentage }}%{% elseif percentage < 0 %}<i class="icon-chevron-down"></i>{{ percentage }}%{% endif %}</div>
+  </a>
+</div>

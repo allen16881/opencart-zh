@@ -1,0 +1,253 @@
+{{ header }}
+<div class="site-breadcrumb">
+  <div class="container">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+      <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="page-main user-center">
+  <div class="container">
+    <div class="row">
+      {{ column_left }}
+      {% if column_left and column_right %}
+      {% set class = 'col-sm-6' %}
+      {% elseif column_left or column_right %}
+      {% set class = 'col-sm-9' %}
+      {% else %}
+      {% set class = 'col-sm-12' %}
+      {% endif %}
+      <div id="content" class="{{ class }}">
+        {{ content_top }}
+        {% if success %}
+        <div class="alert alert-success alert-dismissible"><i class="icon-checkmark"></i> {{ success }}</div>
+        {% endif %}
+        <div class="user-info-box">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="info">
+                <div class="avatar">
+                  <img src="{{ customer.avatar }}" />
+                  <a class="edit" data-toggle="modal" data-target="#editAvatar">{{ button_edit }}</a>
+                </div>
+                <span class="name">{% if customer.fullname %}{{ customer.fullname }}{% else %}{{ customer.email }}{% endif %}</span>
+                <span class="tip">{{ text_joined_on }} {{ customer.date_added }}</span>
+                <a href="{{ edit }}" class="edit">{{ text_edit_account }} <i class="icon-dots-3"></i></a>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="actions">
+                <div class="row row-sm">
+                  <div class="col-xs-4">
+                    <a href="{{ password }}" class="btn btn-default btn-block">{{ text_password }}</a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="{{ address }}" class="btn btn-default btn-block">{{ text_address }}</a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="{{ recurring }}" class="btn btn-default btn-block">{{ text_recurring }}</a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="{{ download }}" class="btn btn-default btn-block">{{ text_download }}</a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="{{ affiliate }}" class="btn btn-default btn-block">{{ text_my_affiliate }}</a>
+                  </div>
+                  <div class="col-xs-4">
+                    <a href="{{ newsletter }}" class="btn btn-default btn-block">{{ text_my_newsletter }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-sm">
+          <div class="col-sm-3">
+            <a href="{{ order }}" class="btn btn-info quick-stats">
+              <i class="icon-cart"></i>
+              <span class="count">{{ order_total }}</span>
+              <span class="text">{{ text_total_order }}</span>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="{{ wishlist }}" class="btn btn-danger quick-stats">
+              <i class="icon-heart"></i>
+              <span class="count">{{ wishlist_total }}</span>
+              <span class="text">{{ text_total_wishlist }}</span>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="{{ transaction }}" class="btn btn-success quick-stats">
+              <i class="icon-wallet"></i>
+              <span class="count">{{ balance_total }}</span>
+              <span class="text">{{ text_total_balance }}</span>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="{{ reward }}" class="btn btn-warning quick-stats">
+              <i class="icon-inbox"></i>
+              <span class="count">{{ reward_total }}</span>
+              <span class="text">{{ text_total_reward }}</span>
+            </a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">{{ text_latest_order }}</h2>
+            <a href="{{ order }}" class="more">{{ button_more }}</a>
+          </div>
+          <div class="card-body">
+            {% if orders %}
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>{{ column_order_id }}</th>
+                    <th>{{ column_customer }}</th>
+                    <th>{{ column_product }}</th>
+                    <th>{{ column_total }}</th>
+                    <th>{{ column_status }}</th>
+                    <th>{{ column_date_added }}</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                 {% for order in orders %}
+                  <tr>
+                    <td>{{ order.order_id }}</td>
+                    <td>{{ order.fullname }}</td>
+                    <td>{{ order.products }}</td>
+                    <td>{{ order.total }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.date_added }}</td>
+                    <td class="text-right"><a href="{{ order.view }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="icon-preview"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <p class="no-data-box">{{ text_empty_order }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% if credit_cards %}
+        <h2>{{ text_credit_card }}</h2>
+        <ul class="list-unstyled">
+          {% for credit_card in credit_cards %}
+          <li><a href="{{ credit_card.href }}">{{ credit_card.name }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {{ content_bottom }}
+      </div>
+      {{ column_right }}
+    </div>
+</div>
+<div class="modal fade" id="editAvatar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ text_edit_avatar }}</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data" id="uploadImg" class="upload-image-box" data-name="avatar" data-url="index.php?route=account/avatar/upload">
+          <div class="preview avatar-preview"><img src=""></div>
+          <div class="icon"><i class="icon-camera"></i></div>
+          <div class="action"><button type="button" class="btn btn-primary btn-long" onclick="uploadImageBox(this)">{{ button_upload_image }}</button><input type="file" name="avatar"><input type="hidden" name="avatar_data"></div>
+          <div class="tips">{{ text_upload_avatar_tip }}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('#editAvatar').on('hidden.bs.modal', function (event) {
+  var box = $('#editAvatar .upload-image-box');
+  $('[type=file]', box).val('');
+  box.removeClass('has-error has-preview only-preview');
+  $('button', box).prop('disabled', false);
+  $('.tips', box).html('{{ text_upload_avatar_tip }}');
+  $('.icon', box).html('<i class="icon-camera"></i>');
+});
+function uploadImageBox(btn) {
+  btn = $(btn);
+  var box = btn.parents('.upload-image-box');
+  var maxSize = 2*1024*1024;//2M
+  var minHeight = 300;
+  var minWidth = 300;
+  var name = box.data('name');
+  var fileInput = $('[name='+name+']', box);
+  fileInput.trigger('click');
+  fileInput.one('change', function(){
+    var file = $(this)[0].files[0];
+    if (!((file.type == 'image/jpeg') || (file.type == 'image/png') || (file.type == 'image/jpg') || (file.type == 'image/gif'))) {
+      box.removeClass('has-preview');
+      box.addClass('has-error');
+      $('.icon', box).html('<i class="icon-warning shake"></i>');
+      $('.tips', box).html('<span class="text-danger">{{ error_file_type }}</span>');
+      return false;
+    } 
+    if (file.size > maxSize) {
+      box.removeClass('has-preview');
+      box.addClass('has-error');
+      $('.icon', box).html('<i class="icon-warning shake"></i>');
+      $('.tips', box).html('<span class="text-danger">{{ error_file_size }}</span>');
+      return false;
+    }
+    var image = new Image();
+    image.src = URL.createObjectURL(file);
+    image.onload = function () {
+      if (this.height < minHeight || this.width < minWidth) {
+        box.removeClass('has-preview');
+        box.addClass('has-error');
+        $('.icon', box).html('<i class="icon-warning shake"></i>');
+        $('.tips', box).html('<span class="text-danger">{{ error_image_size }}</span>');
+        return false;
+      } else {
+          box.removeClass('has-error');
+          formData = new FormData();
+          formData.append('file', file);
+          $('button', box).prop('disabled', true);
+          $('.tips', box).html('{{ text_uploading }}');
+          $('.icon', box).html('<i class="icon-loading spin"></i>');
+          $.ajax({
+            url: box.data('url'),
+            type: 'POST',
+            data: formData,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            dataType: 'json'
+          }).done(function(response) {
+            fileInput.val('');
+            if (response.error) {
+              box.removeClass('has-preview');
+              $('.tips', box).html('<span class="text-danger">'+response.error+'</span>');
+              $('.icon', box).html('<i class="icon-warning shake"></i>');
+            } else {
+              //box.addClass('has-preview');
+              //$('.'+name+'-preview img').attr('src', response.image);
+              $('.tips', box).html('{{ text_upload_avatar_tip }}');
+              $('.icon', box).html('<i class="icon-camera"></i>');
+              $('[name="'+name+'"]', box).val('');
+              $('#editAvatar').modal('hide');
+              $('.user-info-box .avatar img').attr('src', response.image);
+            }
+          }).fail(function(response){
+            fileInput.val('');
+            box.addClass('has-error');
+            $('button', box).prop('disabled', false);
+            $('.tips', box).html('<span class="text-danger">{{ error_upload }}</span>');
+            $('.icon', box).html('<i class="icon-warning shake"></i>');
+          });
+          return false;
+      }
+    };
+  });
+}
+//--></script>
+{{ footer }}

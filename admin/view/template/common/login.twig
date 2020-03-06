@@ -1,0 +1,56 @@
+{{ header }}
+<div id="content">
+  <div class="container-fluid">
+    <div class="row" class="">
+      <div class="col-sm-4 login-center">
+        <div class="panel panel-default" style="width: 600px;">
+          <div class="panel-heading">
+            <h1 class="panel-title"><i class="icon-lock"></i> {{ text_login }}</h1>
+          </div>
+          <div class="panel-body">
+             <div class="col-sm-6">
+                  <img src="{{img_path}}/e-solution.png" height="220">
+             </div>
+             <div class="col-sm-6">
+            {% if success %}
+            <div class="alert alert-success alert-dismissible"><i class="icon-checkmark"></i> {{ success }}
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endif %}
+            {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="icon-warning"></i> {{ error_warning }}
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endif %}
+            <form action="{{ action }}" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="input-username">{{ entry_username }}</label>
+                <div class="input-group"><span class="input-group-addon"><i class="icon-user"></i></span>
+                  <input type="text" name="username" value="{{ username }}" placeholder="{{ entry_username }}" id="input-username" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input-password">{{ entry_password }}</label>
+                <div class="input-group"><span class="input-group-addon"><i class="icon-lock"></i></span>
+                  <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}" id="input-password" class="form-control" />
+                </div>
+                {% if forgotten %}
+                <span class="help-block"><a href="{{ forgotten }}">{{ text_forgotten }}</a></span>
+                {% endif %}
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary"><i class="icon-enter"></i> {{ button_login }}</button>
+              </div>
+              {% if redirect %}
+              <input type="hidden" name="redirect" value="{{ redirect }}" />
+              {% endif %}
+            </form>
+
+             </div>
+          </div>
+        </div>
+          {{ footer }}
+      </div>
+    </div>
+  </div>
+</div>

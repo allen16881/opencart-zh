@@ -1,0 +1,26 @@
+{{ header }}
+<div class="container">
+  <form action="{{ action }}" method="post" class="jumbotron">
+    <h1>{{ heading_title }}</h1>
+    <p class="lead">{{ text_step_1 }}</p>
+    <p><input type="submit" value="{{ button_continue }}" class="btn btn-lg btn-success" /></p>
+    <p>{{ text_installing }}<a href="#" data-toggle="modal" data-target="#termsModal">{{ text_license_agreement }}</a></p>
+  </form>
+</div>
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">{{ text_license_agreement }}</h4>
+      </div>
+      <div class="modal-body">
+        {{ text_terms }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

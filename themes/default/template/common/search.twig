@@ -1,0 +1,11 @@
+<div class="search dropdown">
+	<a href="{{ search }}" data-toggle="dropdown"><i class="icon-search"></i></a>
+	<div class="quick-search-box dropdown-menu">
+		<form action="{{ search }}" method="get" id="header-search">
+			<div class="input-group">
+				<input type="text" name="keyword" value="{{ keyword }}" placeholder="{{ text_search }}" class="form-control" />
+				<span class="input-group-btn"><button class="btn btn-primary" type="submit">{{ text_search }}</button></span>
+			</div>
+		</form>
+	</div>
+</div>

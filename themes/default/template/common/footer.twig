@@ -1,0 +1,73 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      {% if informations %}
+      <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+        <div class="footer-title"><h4>{{ text_information }}</h4></div>
+        <ul class="footer-content list-unstyled">
+          {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+        <div class="footer-title"><h4>{{ text_service }}</h4></div>
+        <ul class="footer-content list-unstyled">
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ faqs }}">{{ text_faqs }}</a></li>
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+        </ul>
+      </div>
+      <div class="clearfix visible-xs-block"></div>
+      <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+        <div class="footer-title"><h4>{{ text_extra }}</h4></div>
+        <ul class="footer-content list-unstyled">
+          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+        <div class="footer-title"><h4>{{ text_account }}</h4></div>
+        <ul class="footer-content list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-lg-4 col-sm-8 col-xs-12">
+        <div class="footer-title"><h4>{{ text_contact }}</h4></div>
+        <ul class="footer-content list-unstyled">
+          {% if telephone %}<li class="contact-phone">{{ text_telephone }}{{ colon }} {{ telephone }}</li>{% endif %}
+          {% if address %}<li><i class="icon-location"></i>{{ address }}</li>{% endif %}
+          {% if open %}<li><i class="icon-clock"></i>{{ open }}</li>{% endif %}
+          {% if cs_email %}<li><i class="icon-mail"></i>{{ cs_email }}</li>{% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="footer-bar">
+  <div class="container">
+    {% if menus or contents %}
+    <div class="links">
+      {% for menu in menus %}
+      <a href="{{ menu.link }}">{{ menu.title }}</a></li>
+      {% endfor %}
+      {% for content in contents %}
+      <a href="{{ content.href }}">{{ content.title }}</a></li>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="copyright pull-left">{{ copyright }} {{ links }}</div>
+    <div class="powered pull-right">{{ text_powered }}</div>
+  </div>
+</div>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+</body></html>

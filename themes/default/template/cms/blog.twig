@@ -1,0 +1,58 @@
+{{ header }}
+<div class="site-breadcrumb">
+  <div class="container">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+      <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="page-main">
+  <div class="container">
+		<div class="row">
+			{{ column_left }}
+			{% if column_left and column_right %}
+			{% set class = 'col-sm-6' %}
+			{% elseif column_left or column_right %}
+			{% set class = 'col-sm-9' %}
+			{% else %}
+			{% set class = 'col-sm-12' %}
+      {% endif %}
+      <div id="content" class="{{ class }}">
+        {{ content_top }}
+        <h1 class="page-title">{{ heading_title }}</h1>
+        {% if contents %}
+        <div class="row">
+          {% for content in contents %}
+          <div class="post-list col-sm-12">
+            <div class="post">
+              <h2 class="title"><a href="{{ content.href }}">{{ content.title }}</a></h2>
+              <span class="time">{{ content.date_added }}</span>
+              {% if content.image %}<a href="{{ content.href }}" class="image"><img src="{{ content.image }}" /></a>{% endif %}
+              {% if content.description %}<div class="description">{{ content.description }}</div>{% endif %}
+              <a href="{{ content.href }}" class="more">{{ button_read_more }}</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-center">{{ pagination }}</div>
+        </div>
+        {% else %}
+        <div class="row">
+          <div class="col-sm-12">
+          <p class="no-data-box"><i class="icon-information"></i><span class="text">{{ text_empty }}</span></p>
+          <div class="buttons">
+            <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+          </div>
+        </div>
+        </div>
+        {% endif %}
+        {{ content_bottom }}
+      </div>
+      {{ column_right }}
+    </div>
+  </div>
+</div>
+{{ footer }}

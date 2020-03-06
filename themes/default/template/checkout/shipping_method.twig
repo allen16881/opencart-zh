@@ -1,0 +1,39 @@
+{% if error_warning %}
+<div class="alert alert-warning alert-dismissible"><i class="icon-warning"></i> {{ error_warning }}</div>
+{% endif %}
+{% if shipping_methods %}
+<p>{{ text_shipping_method }}</p>
+<div class="variations shipping-method-variations">
+  <div class="form-group">
+    {% for shipping_method in shipping_methods %}
+    {% if not shipping_method.error %}
+    {% for quote in shipping_method.quote %}
+    <div class="radio">
+      {% if quote.code == code or not code %}
+      {% set code = quote.code %}
+      <label class="selected">
+        {% set code = quote.code %}
+        <input type="radio" name="shipping_method" value="{{ quote.code }}" checked="checked" />
+        {{ quote.title }}{% if quote.cost > 0 %}<span class="additional">{{ quote.text }}</span>{% endif %}
+        <div class="checkmark"><i class="icon-checkmark"></i></div>
+      </label>
+      {% else %}
+      <label>
+        <input type="radio" name="shipping_method" value="{{ quote.code }}" />
+        {{ quote.title }}{% if quote.cost > 0 %}<span class="additional">{{ quote.text }}</span>{% endif %}
+      </label>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-danger alert-dismissible">{{ shipping_method.error }}</div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_continue }}" id="button-shipping-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>

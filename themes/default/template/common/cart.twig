@@ -1,0 +1,55 @@
+<div class="quick-cart dropdown">
+	<a href="{{ cart }}" data-toggle="dropdown">
+		<i class="icon-cart"></i>
+		<span class="cart-quantity badge">{{ cart_quantity }}</span>
+	</a>
+	<div class="quick-cart-box dropdown-menu">
+		<div class="quick-cart-wrapper">
+		{% if products or vouchers %}
+		<div class="quick-cart-content">
+			{% for product in products %}
+			<div class="item{% if product.option %} has-option{% endif %}
+">
+				{% if product.thumb %}
+				<a href="{{ product.href }}" class="image"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
+				{% endif %}
+				<div class="info">
+					<a href="{{ product.href }}" class="name">{{ product.name }}</a>
+					{% if product.option %}
+					<span class="option">
+					{% for option in product.option %}<span>{{ option.name }}: {{ option.value }}</span>{% endfor %}
+					</span>
+					{% endif %}
+					<span class="quantity">x {{ product.quantity }}</span>
+					<span class="total price">{{ product.total }}</span>
+				</div>
+				<button type="button" onclick="cart.remove('{{ product.cart_id }}');" class="remove"><i class="icon-cross"></i></button>
+			</div>
+			{% endfor %}
+			{% for voucher in vouchers %}
+			<div class="item">
+				<div class="info">
+					<span class="name">{{ voucher.description }}</span>
+					<span class="quantity">x 1</span>
+					<span class="total price">{{ voucher.amount }}</span>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="quick-cart-footer clearfix">
+			<div class="totals">
+			{% for total in totals %}
+				<p><strong>{{ total.title }}{{ colon }}</strong><span class="price">{{ total.text }}</span></p>
+			{% endfor %}
+			</div>
+			<div class="btns">
+				<a href="{{ cart }}" class="btn btn-primary cart">{{ text_cart }}</a>
+				<a href="{{ checkout }}" class="btn btn-default checkout">{{ text_checkout }}</a>
+			</div>
+		</div>
+		{% else %}
+		<div class="cart-empty"><a href="{{ cart }}">{{ text_empty }}</a></div>
+		{% endif %}
+		</div>
+	</div>
+</div>

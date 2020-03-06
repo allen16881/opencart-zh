@@ -1,0 +1,67 @@
+{% if categories or cms_categories %}
+<div class="navbar-collapse nav-main-wrapper collapse">
+  <ul class="nav-main nav">
+    {% for menu in menus %}
+    {% if menu.children %}
+    <li class="dropdown">
+      <a href="{{ menu.link }}" class="dropdown-toggle" data-toggle="dropdown">{{ menu.title }}<i class="icon-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        {% for children in menu.children %}
+        {% if children.children %}
+        <li class="dropdown">
+          <a href="{{ children.link }}" class="dropdown-toggle" data-toggle="dropdown">{{ children.title }}<i class="icon-chevron-right"></i></a>
+          <ul class="dropdown-menu">
+            {% for child in children.children %}
+            <li><a href="{{ child.link }}">{{ child.title }}</a></li>
+            {% endfor %}
+            <li class="see-all"><a href="{{ children.link }}">{{ text_all }} {{ children.title }}</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="{{ children.link }}">{{ children.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="see-all"><a href="{{ menu.link }}">{{ text_all }} {{ menu.title }}</a></li>
+      </ul>
+    </li>
+    {% else %}
+    <li><a href="{{ menu.link }}">{{ menu.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% for category in categories %}
+    {% if category.children %}
+    <li class="dropdown">
+      <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+      <ul class="dropdown-menu">
+        {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+        {% for child in children %}
+        <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+        {% endfor %}
+        {% endfor %}
+        <li class="see-all"><a href="{{ category.href }}">{{ text_all }} {{ category.name }}</a></li>
+      </ul>
+    </li>
+    {% else %}
+    <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% for category in cms_categories %}
+    {% if category.children %}
+    <li class="dropdown">
+      <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+      <ul class="dropdown-menu">
+        {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+        {% for child in children %}
+        <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+        {% endfor %}
+        {% endfor %}
+        <li class="see-all"><a href="{{ category.href }}">{{ text_all }} {{ category.name }}</a></li>
+      </ul>
+    </li>
+    {% else %}
+    <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

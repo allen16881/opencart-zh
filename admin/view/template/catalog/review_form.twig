@@ -1,0 +1,217 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-review" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="icon-checkmark"></i></button>
+        {% if add %}<a href="{{ add }}" data-toggle="tooltip" title="{{ button_reply }}" class="btn btn-default"><i class="icon-reply"></i></a>{% endif %}
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="icon-return"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="icon-warning"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success alert-dismissible"><i class="icon-checkmark"></i> {{ success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="icon-pencil"></i> {{ text_form }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-review" class="form-horizontal">
+          {% if parent_info %}
+          <input type="hidden" name="parent_id" value="{{ parent_info.review_id }}" />
+          <input type="hidden" name="product_id" value="{{ parent_info.product_id }}" />
+          <div class="panel panel-info">
+            <div class="panel-heading">{{ text_parent }}</div>
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-body">
+                  <h4 class="media-heading">{{ parent_info.author }}</h4>
+                  <p>{{ parent_info.text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-product"><span data-toggle="tooltip" title="{{ help_product }}">{{ entry_product }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="product" value="{{ product }}" placeholder="{{ entry_product }}" id="input-product" class="form-control" />
+              <input type="hidden" name="product_id" value="{{ product_id }}" />
+              {% if error_product %}
+              <div class="text-danger">{{ error_product }}</div>
+              {% endif %} </div>
+          </div>
+          {% endif %}
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-author">{{ entry_author }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="author" value="{{ author }}" placeholder="{{ entry_author }}" id="input-author" class="form-control" />
+              {% if error_author %}
+              <div class="text-danger">{{ error_author }}</div>
+              {% endif %} </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-text">{{ entry_text }}</label>
+            <div class="col-sm-10">
+              <textarea name="text" cols="60" rows="8" placeholder="{{ entry_text }}" id="input-text" class="form-control">{{ text }}</textarea>
+              {% if error_text %}
+              <div class="text-danger">{{ error_text }}</div>
+              {% endif %} </div>
+          </div>
+          {% if not parent_info %}
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_rating }}</label>
+            <div class="col-sm-10">
+              <label class="radio-inline"> {% if rating == 1 %}
+                <input type="radio" name="rating" value="1" checked="checked" />
+                1
+                {% else %}
+                <input type="radio" name="rating" value="1" />
+                1
+                {% endif %} </label>
+              <label class="radio-inline"> {% if rating == 2 %}
+                <input type="radio" name="rating" value="2" checked="checked" />
+                2
+                {% else %}
+                <input type="radio" name="rating" value="2" />
+                2
+                {% endif %} </label>
+              <label class="radio-inline"> {% if rating == 3 %}
+                <input type="radio" name="rating" value="3" checked="checked" />
+                3
+                {% else %}
+                <input type="radio" name="rating" value="3" />
+                3
+                {% endif %} </label>
+              <label class="radio-inline"> {% if rating == 4 %}
+                <input type="radio" name="rating" value="4" checked="checked" />
+                4
+                {% else %}
+                <input type="radio" name="rating" value="4" />
+                4
+                {% endif %} </label>
+              <label class="radio-inline"> {% if rating == 5 %}
+                <input type="radio" name="rating" value="5" checked="checked" />
+                5
+                {% else %}
+                <input type="radio" name="rating" value="5" />
+                5
+                {% endif %} </label>
+              {% if error_rating %}
+              <div class="text-danger">{{ error_rating }}</div>
+              {% endif %} </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_featured }}">{{ entry_featured }}</span></label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="featured" value="1"{% if featured %} checked="checked"{% endif %} /> {{ text_yes }}
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="featured" value="0"{% if not featured %} checked="checked"{% endif %} /> {{ text_no }}
+              </label>
+            </div>
+          </div>
+          {% endif %}
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-date-added">{{ entry_date_added }}</label>
+            <div class="col-sm-3">
+              <div class="input-group datetime">
+                <input type="text" name="date_added" value="{{ date_added }}" placeholder="{{ entry_date_added }}" data-date-format="YYYY-MM-DD HH:mm:ss" id="input-date-added" class="form-control" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="icon-calendar"></i></button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-ip">{{ entry_ip }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="ip" value="{{ ip }}" placeholder="{{ entry_ip }}" id="input-ip" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+        </form>
+        {% if replies %}
+        <div class="panel panel-info">
+          <div class="panel-heading">{{ text_reply }}</div>
+          <div class="panel-body">
+            <div class="media-list">
+              {% for reply in replies %}
+              <div class="media">
+                <div class="media-left media-middle">
+                  {% if reply.status %}<span class="label label-success">{{ text_enabled }}</span>{% else %}<span class="label label-danger">{{ text_disabled }}</span>{% endif %}
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">{{ reply.date_added }}</div>
+                  <h4 class="media-heading">{{ reply.author }}</h4>
+                  <p>{{ reply.text }}</p>
+                </div>
+                <div class="media-right media-middle" style="min-width:100px;">
+                  <a href="{{ reply.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="icon-pencil"></i></a>
+                  <a href="{{ reply.delete }}" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="icon-cross"></i></a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript"><!--
+$('.datetime').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: true,
+	pickTime: true
+});
+//--></script> 
+  <script type="text/javascript"><!--
+$('input[name=\'product\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',			
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'product\']').val(item['label']);
+		$('input[name=\'product_id\']').val(item['value']);		
+	}	
+});
+//--></script></div>
+{{ footer }}

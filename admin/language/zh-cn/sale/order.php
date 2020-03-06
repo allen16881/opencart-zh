@@ -1,0 +1,134 @@
+<?php
+// Heading
+$_['heading_title']                           = '订单';
+
+// Text
+$_['text_success']                            = '成功：订单已修改！';
+$_['text_list']                               = '订单列表';
+$_['text_add']                                = '添加订单';
+$_['text_edit']                               = '编辑订单';
+$_['text_filter']                             = '筛选器';
+$_['text_order_detail']                       = '订单详细信息';
+$_['text_customer_detail']                    = '会员详情';
+$_['text_option']                             = '选项';
+$_['text_store']                              = '商店';
+$_['text_date_added']                         = '添加日期';
+$_['text_payment_method']                     = '付款方式';
+$_['text_shipping_method']                    = '配送方式';
+$_['text_customer']                           = '会员';
+$_['text_customer_group']                     = '会员组';
+$_['text_email']                              = '电子邮箱';
+$_['text_telephone']                          = '电话';
+$_['text_fax']                                = '传真';
+$_['text_invoice']                            = '发票';
+$_['text_reward']                             = '奖励积分';
+$_['text_affiliate']                          = '推广';
+$_['text_order']                              = '订单 (#%s)';
+$_['text_payment_address']                    = '付款地址';
+$_['text_shipping_address']                   = '配送地址';
+$_['text_comment']                            = '会员评论';
+$_['text_history']                            = '订单操作记录';
+$_['text_history_add']                        = '添加订单操作记录';
+$_['text_account_custom_field']               = '账户自定义字段';
+$_['text_payment_custom_field']               = '付款地址自定义字段';
+$_['text_shipping_custom_field']              = '配送地址自定义字段';
+$_['text_browser']                            = '浏览器';
+$_['text_ip']                                 = 'IP 地址';
+$_['text_forwarded_ip']                       = '转发 IP：';
+$_['text_user_agent']                         = '用户代理：';
+$_['text_accept_language']                    = '接受语言：';
+$_['text_order_id']                           = '订单 ID:';
+$_['text_website']                            = '网站:';
+$_['text_invoice_no']                         = '发票编号:';
+$_['text_invoice_date']                       = '发票日期:';
+$_['text_sku']                                = 'SKU：';
+$_['text_upc']                                = 'UPC：';
+$_['text_ean']                                = 'EAN：';
+$_['text_jan']                                = 'JAN：';
+$_['text_isbn']                               = 'ISBN：';
+$_['text_mpn']                                = 'MPN：';
+$_['text_missing']                            = '丢失的订单';
+$_['text_default']                            = '默认';
+$_['text_product']                            = '添加商品';
+$_['text_voucher']                            = '添加礼品券';
+$_['text_shipping']                           = '配送';
+$_['text_contact']                            = '联系';
+$_['text_reward_added']			      = '成功：积分已添加！';
+$_['text_reward_removed']		      = '成功：积分已删除！';
+$_['text_commission_added']		      = '成功：分红已添加！';
+$_['text_commission_removed']	              = '成功：分红已删除！';
+$_['text_restock']                            = '成功：商品已进货！';
+$_['text_upload']                             = '成功：文件已上传！';
+$_['text_picklist']                           = '发货单';
+
+// Column
+$_['column_order_id']                         = '订单 ID';
+$_['column_customer']                         = '会员';
+$_['column_status']                           = '状态';
+$_['column_date_added']                       = '加入日期';
+$_['column_date_modified']                    = '修改日期';
+$_['column_total']                            = '总计';
+$_['column_product']                          = '商品';
+$_['column_model']                            = '商品编号';
+$_['column_quantity']                         = '数量';
+$_['column_price']                            = '单位价格';
+$_['column_comment']                          = '评论';
+$_['column_notify']                           = '会员通知';
+$_['column_location']                         = '位置';
+$_['column_reference']                        = '参考';
+$_['column_action']                           = '操作';
+$_['column_weight']                           = '商品重量';
+
+// Entry
+$_['entry_store']                             = '网店';
+$_['entry_customer']                          = '会员';
+$_['entry_customer_group']                    = '会员群组';
+$_['entry_firstname']                         = '名字';
+$_['entry_lastname']                          = '姓氏';
+$_['entry_fullname']                          = '姓名';
+$_['entry_email']                             = '电子邮件';
+$_['entry_telephone']                         = '电话';
+$_['entry_address']                           = '选择地址';
+$_['entry_company']                           = '公司';
+$_['entry_address_1']                         = '详细地址';
+$_['entry_address_2']                         = '地址 2';
+$_['entry_city']                              = '城市';
+$_['entry_postcode']                          = '邮编';
+$_['entry_area']                              = '地区';
+$_['entry_country']                           = '国家';
+$_['entry_zone']                              = '省份';
+$_['entry_zone_code']                         = '省份代码';
+$_['entry_product']                           = '选择商品';
+$_['entry_option']                            = '选择选项';
+$_['entry_quantity']                          = '数量';
+$_['entry_to_name']                           = '收件人姓名';
+$_['entry_to_email']                          = '收件人的电子邮件';
+$_['entry_from_name']                         = '发件人姓名';
+$_['entry_from_email']                        = '发件人的电子邮件';
+$_['entry_theme']                             = '礼品证书主题';
+$_['entry_message']                           = '信息';
+$_['entry_amount']                            = '金额';
+$_['entry_affiliate']                         = '联盟会员';
+$_['entry_order_status']                      = '订单状态';
+$_['entry_notify']                            = '通知会员';
+$_['entry_override']                          = '覆盖';
+$_['entry_comment']                           = '评论';
+$_['entry_currency']                          = '货币';
+$_['entry_shipping_method']                   = '货运方式';
+$_['entry_payment_method']                    = '支付方法';
+$_['entry_coupon']                            = '优惠券';
+$_['entry_voucher']                           = '礼品券';
+$_['entry_reward']                            = '奖赏';
+$_['entry_order_id']                          = '订单 ID';
+$_['entry_total']                             = '总计';
+$_['entry_date_added']                        = '加入日期';
+$_['entry_date_modified']                     = '修改日期';
+
+// Help
+$_['help_override']                           = '如果订单在更改状态时被反欺诈扩展屏蔽，则覆盖它。';
+
+// Error
+$_['error_warning']                           = '警告: 请仔细检查表单中的错误 ！';
+$_['error_permission']                        = '警告: 您没有权限修改订单 ！';
+$_['error_action']                            = '警告: 无法完成此操作!';
+$_['error_filetype']			      = '无效的文件类型!';
